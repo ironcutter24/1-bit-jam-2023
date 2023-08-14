@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://bgv3hhmac76gs"]
 
 [ext_resource type="Texture2D" uid="uid://dprcxlm1t6p0t" path="res://art/character.png" id="1_5dugy"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_jc6nx"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_hm7rl"]
 [ext_resource type="PackedScene" uid="uid://ca6jaoakao0ov" path="res://scenes/light_animation.tscn" id="3_3282l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p26rr"]
@@ -179,7 +179,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_jc6nx")
+script = ExtResource("1_hm7rl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -187,9 +187,7 @@ shape = SubResource("RectangleShape2D_p26rr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_is34a")
-animation = &"03_4_mimic"
-frame = 6
-frame_progress = 1.0
+animation = &"00_idle"
 
 [node name="Body" type="Node2D" parent="."]
 

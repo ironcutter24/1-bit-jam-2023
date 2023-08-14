@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://peyybkxh1pq8"]
+[gd_scene load_steps=8 format=3 uid="uid://peyybkxh1pq8"]
 
 [ext_resource type="Texture2D" uid="uid://oek6yowl1tio" path="res://art/chandelier.png" id="1_lonsx"]
-[ext_resource type="Script" path="res://scenes/PlayDefaultAnim.gd" id="2_lx6qf"]
 [ext_resource type="PackedScene" uid="uid://ca6jaoakao0ov" path="res://scenes/light_animation.tscn" id="3_2vay4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvfb8"]
@@ -41,8 +40,9 @@ animations = [{
 }]
 
 [node name="Chandelier" type="AnimatedSprite2D"]
+z_index = -10
 position = Vector2(74, 123)
 sprite_frames = SubResource("SpriteFrames_4pna6")
-script = ExtResource("2_lx6qf")
+autoplay = "default"
 
 [node name="LightAnimation" parent="." instance=ExtResource("3_2vay4")]

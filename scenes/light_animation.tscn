@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca6jaoakao0ov"]
+[gd_scene load_steps=7 format=3 uid="uid://ca6jaoakao0ov"]
 
 [ext_resource type="Texture2D" uid="uid://dw45s573ixj6c" path="res://art/light circle.png" id="1_sqmf3"]
-[ext_resource type="Script" path="res://scenes/PlayDefaultAnim.gd" id="2_y1m3m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fh3qq"]
 atlas = ExtResource("1_sqmf3")
@@ -40,8 +39,8 @@ animations = [{
 }]
 
 [node name="LightAnimation" type="AnimatedSprite2D"]
-z_index = -10
+z_index = -20
 sprite_frames = SubResource("SpriteFrames_yx7rt")
+autoplay = "default"
 frame = 2
 frame_progress = 0.3532
-script = ExtResource("2_y1m3m")
