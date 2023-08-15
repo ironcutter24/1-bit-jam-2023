@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://bgv3hhmac76gs"]
+[gd_scene load_steps=27 format=3 uid="uid://bgv3hhmac76gs"]
 
 [ext_resource type="Texture2D" uid="uid://dprcxlm1t6p0t" path="res://art/character.png" id="1_5dugy"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hm7rl"]
+[ext_resource type="PackedScene" uid="uid://e5havokogof6" path="res://scenes/light_bullet.tscn" id="2_n6vic"]
 [ext_resource type="PackedScene" uid="uid://ca6jaoakao0ov" path="res://scenes/light_animation.tscn" id="3_3282l"]
+[ext_resource type="Texture2D" uid="uid://bw6m2mgoidn5p" path="res://art/charge_dots.png" id="5_u0o7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p26rr"]
-size = Vector2(8, 12)
+size = Vector2(8, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86gpf"]
 atlas = ExtResource("1_5dugy")
@@ -178,8 +180,12 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("charge_dots", "bullet_spawn_point")]
+collision_layer = 2
 script = ExtResource("1_hm7rl")
+charge_dots = NodePath("ChargeDots")
+bullet_spawn_point = NodePath("Body/BulletSpawnPoint")
+light_bullet = ExtResource("2_n6vic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -191,7 +197,15 @@ animation = &"00_idle"
 
 [node name="Body" type="Node2D" parent="."]
 
+[node name="BulletSpawnPoint" type="Node2D" parent="Body"]
+position = Vector2(6, -5)
+
 [node name="LightAnimation" parent="Body" instance=ExtResource("3_3282l")]
 position = Vector2(5, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ChargeDots" type="Sprite2D" parent="."]
+position = Vector2(1, -10)
+texture = ExtResource("5_u0o7l")
+hframes = 4

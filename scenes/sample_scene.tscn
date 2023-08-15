@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbjg0y0hqcrfq"]
+[gd_scene load_steps=7 format=3 uid="uid://cbjg0y0hqcrfq"]
 
 [ext_resource type="PackedScene" uid="uid://bgv3hhmac76gs" path="res://scenes/player.tscn" id="1_o0jpf"]
 [ext_resource type="Texture2D" uid="uid://dom5wn4rui1s6" path="res://art/platforms.png" id="3_hyuom"]
 [ext_resource type="PackedScene" uid="uid://peyybkxh1pq8" path="res://scenes/chandelier.tscn" id="3_tm4ga"]
+[ext_resource type="PackedScene" uid="uid://dgiufjutc02mh" path="res://scenes/prey.tscn" id="5_it5ch"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nsm7d"]
 texture = ExtResource("3_hyuom")
@@ -11,14 +12,14 @@ texture = ExtResource("3_hyuom")
 0:0/0/terrain = 1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 6, -8, 6)
 0:0/0/terrains_peering_bit/right_side = 1
 1:0/0 = 0
 1:0/0/terrain_set = 0
 1:0/0/terrain = 1
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 6, -8, 6)
 1:0/0/terrains_peering_bit/right_side = 1
 1:0/0/terrains_peering_bit/left_side = 1
 2:0/0 = 0
@@ -26,7 +27,7 @@ texture = ExtResource("3_hyuom")
 2:0/0/terrain = 1
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 6, -8, 6)
 2:0/0/terrains_peering_bit/right_side = 1
 2:0/0/terrains_peering_bit/left_side = 1
 3:0/0 = 0
@@ -34,7 +35,7 @@ texture = ExtResource("3_hyuom")
 3:0/0/terrain = 1
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 6, -8, 6)
 3:0/0/terrains_peering_bit/left_side = 1
 
 [sub_resource type="TileSet" id="TileSet_7vg4u"]
@@ -57,3 +58,6 @@ layer_0/tile_data = PackedInt32Array(524291, 0, 0, 524292, 131072, 0, 524293, 13
 position = Vector2(148, 128)
 
 [node name="Chandelier" parent="." instance=ExtResource("3_tm4ga")]
+
+[node name="Prey" parent="." instance=ExtResource("5_it5ch")]
+position = Vector2(271, 112)

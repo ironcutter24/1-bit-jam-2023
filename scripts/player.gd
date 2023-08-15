@@ -7,21 +7,50 @@ const JUMP_VELOCITY = -220.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@export var launch_force : float = 200
+@export var charge_dots : Sprite2D
+@export var bullet_spawn_point : Node2D
+@export var light_bullet : PackedScene
+
 @onready var body : Node2D = $Body
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 
 var is_acting : bool = false
+var is_charging : bool = false
 
-func _ready():
-	feed()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("quit_game"):
+		get_tree().quit()
+	
+	if event.is_action_pressed("feed") and !is_acting:
+		feed()
+
 
 func _process(_delta):
-	if Input.is_action_just_pressed("feed"):
-		is_acting = true
-		feed()
+	if Input.is_action_just_pressed("launch") and not is_charging:
+		charge_coroutine()
+
+const level_charge_time : float = 0.5
+func charge_coroutine():
+	is_charging = true
 	
-	if Input.is_action_just_pressed("quit_game"):
-		get_tree().quit()
+	var level = 0
+	var time = level_charge_time
+	
+	while Input.is_action_pressed("launch"):
+		await get_tree().process_frame
+		time -= get_process_delta_time()
+		
+		if time <= 0.0:
+			level += 1
+			charge_dots.frame = level
+			time = level_charge_time
+	
+	launch(Vector2(body.scale.x, -1).normalized() * launch_force * (1 + level) / 4.0)
+	charge_dots.frame = 0
+	is_charging = false
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -47,10 +76,22 @@ func _physics_process(delta):
 			anim.play("01_walk" if direction else "00_idle")
 		else:
 			anim.play("02_jump")
+	else:
+		velocity.x = 0.0
 	
 	move_and_slide()
 
+
+func launch(vel: Vector2):
+	var scene = light_bullet.instantiate()
+	scene.global_position = bullet_spawn_point.global_position
+	scene.apply_central_impulse(vel)
+	owner.add_child(scene)
+
+
 func feed():
+	is_acting = true
+	
 	anim.play("03_1_excitement")
 	await get_tree().create_timer(1).timeout
 	anim.play("03_2_feed")

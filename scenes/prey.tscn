@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://dgiufjutc02mh"]
+
+[ext_resource type="Texture2D" uid="uid://dg766eqx18i8w" path="res://art/prey.png" id="1_07r8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh6ho"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upq0r"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poqeo"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vb3m"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t4em"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruqx8"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydrkn"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppabw"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhkwb"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixcoi"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c24ld"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0pjl"]
+atlas = ExtResource("1_07r8p")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdiby"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upq0r")
+}],
+"loop": true,
+"name": &"00_idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poqeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vb3m")
+}],
+"loop": true,
+"name": &"01_walk",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t4em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruqx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydrkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppabw")
+}],
+"loop": false,
+"name": &"03_1_cry_start",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhkwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixcoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c24ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0pjl")
+}],
+"loop": true,
+"name": &"03_2_cry_loop",
+"speed": 6.0
+}]
+
+[node name="Prey" type="CharacterBody2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_hh6ho")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xdiby")
+animation = &"03_2_cry_loop"
+autoplay = "03_2_cry_loop"
+frame_progress = 0.410654
