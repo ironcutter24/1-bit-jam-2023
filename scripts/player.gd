@@ -1,7 +1,8 @@
+class_name Player
 extends CharacterBody2D
 
 
-const MOVE_SPEED = 50.0
+const MOVE_SPEED = 60.0
 const JUMP_VELOCITY = -220.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -26,6 +27,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed("feed") and !is_acting:
 		feed()
 
+
+func _init():
+	Global.activePlayer = self
 
 func _process(_delta):
 	if Input.is_action_just_pressed("launch") and not is_charging:
