@@ -24,12 +24,17 @@ func _unhandled_input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
 	
-	if event.is_action_pressed("feed") and !is_acting:
-		feed()
+#	if event.is_action_pressed("feed") and !is_acting:
+#		feed()
 
 
 func _init():
 	Global.activePlayer = self
+
+
+func _ready():
+	$Body/FeedingArea.body_entered.connect(_on_body_entered)
+
 
 func _process(_delta):
 	if Input.is_action_just_pressed("launch") and not is_charging:
@@ -86,20 +91,34 @@ func _physics_process(delta):
 	move_and_slide()
 
 
+func _on_body_entered(other):
+	if other is Prey and other.is_panicking:
+		feed_on(other)
+
+
+var last_launched : RigidBody2D
 func launch(vel: Vector2):
-	var scene = light_bullet.instantiate()
-	scene.global_position = bullet_spawn_point.global_position
-	scene.apply_central_impulse(vel)
-	owner.add_child(scene)
+	if last_launched:
+		last_launched.queue_free()
+	
+	last_launched = light_bullet.instantiate()
+	last_launched.global_position = bullet_spawn_point.global_position
+	last_launched.apply_central_impulse(vel)
+	owner.add_child(last_launched)
 
 
-func feed():
+func feed_on(target):
 	is_acting = true
 	
 	anim.play("03_1_excitement")
 	await get_tree().create_timer(1).timeout
+	
+	await align_with_prey(target)
+	
+	
 	anim.play("03_2_feed")
 	await anim.animation_finished
+	target.queue_free()
 	anim.play("03_3_digest")
 	await get_tree().create_timer(4).timeout
 	anim.play("03_4_mimic")
@@ -108,3 +127,9 @@ func feed():
 	await get_tree().create_timer(.5).timeout
 	
 	is_acting = false
+
+func align_with_prey(target):
+	while target.global_position.x - global_position.x > 4:
+		velocity.x = sign(target.global_position - global_position).x * 20
+		move_and_slide()
+		await get_tree().process_frame

@@ -106,10 +106,9 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Prey" type="CharacterBody2D" node_paths=PackedStringArray("anim")]
+[node name="Prey" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_ig5ql")
-anim = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)
@@ -117,7 +116,7 @@ shape = SubResource("RectangleShape2D_hh6ho")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xdiby")
-animation = &"03_2_cry_loop"
+animation = &"01_walk"
 autoplay = "00_idle"
 
 [node name="FleeTimer" type="Timer" parent="."]

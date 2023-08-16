@@ -1,3 +1,4 @@
+class_name Prey
 extends CharacterBody2D
 
 
@@ -7,9 +8,14 @@ const FLEE_DISTANCE = 40.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@export var anim : AnimatedSprite2D
+var is_panicking : bool = false
+
+@onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+
 
 func _physics_process(delta):
+	if is_panicking: return
+	
 	var fromPlayer = global_position - Global.activePlayer.global_position
 	var dist = fromPlayer.length()
 	
@@ -32,8 +38,13 @@ func _physics_process(delta):
 	var cached_pos = global_position
 	move_and_slide()
 	
-	if cached_pos == global_position:
-		anim.play("03_2_cry_loop")
-	else:
-		anim.play("01_walk" if direction else "00_idle")
+	if cached_pos == global_position and direction:
+		panic()
+		return
 	
+	anim.play("01_walk" if direction else "00_idle")
+
+
+func panic():
+	is_panicking = true
+	anim.play("03_2_cry_loop")
