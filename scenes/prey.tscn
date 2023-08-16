@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/prey.gd" id="1_ig5ql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh6ho"]
-size = Vector2(8, 8)
+size = Vector2(8, 7)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upq0r"]
 atlas = ExtResource("1_07r8p")
@@ -106,16 +106,18 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Prey" type="CharacterBody2D"]
+[node name="Prey" type="CharacterBody2D" node_paths=PackedStringArray("anim")]
 collision_layer = 2
 script = ExtResource("1_ig5ql")
+anim = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_hh6ho")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xdiby")
 animation = &"03_2_cry_loop"
-autoplay = "03_2_cry_loop"
-frame_progress = 0.410654
+autoplay = "00_idle"
+
+[node name="FleeTimer" type="Timer" parent="."]

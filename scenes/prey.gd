@@ -1,18 +1,20 @@
 extends CharacterBody2D
 
 
-const MOVE_SPEED = 40.0
+const MOVE_SPEED = 66.0
+const FLEE_DISTANCE = 40.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@export var anim : AnimatedSprite2D
 
 func _physics_process(delta):
 	var fromPlayer = global_position - Global.activePlayer.global_position
 	var dist = fromPlayer.length()
 	
 	var direction = 0
-	if dist < 60:
+	if dist < FLEE_DISTANCE:
 		direction = sign(fromPlayer.x)
 	
 	# Add the gravity.
@@ -23,7 +25,15 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if direction:
 		velocity.x = direction * MOVE_SPEED
+		anim.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, MOVE_SPEED)
 
+	var cached_pos = global_position
 	move_and_slide()
+	
+	if cached_pos == global_position:
+		anim.play("03_2_cry_loop")
+	else:
+		anim.play("01_walk" if direction else "00_idle")
+	
