@@ -20,14 +20,6 @@ var is_acting : bool = false
 var is_charging : bool = false
 
 
-func _unhandled_input(event):
-	if event.is_action_pressed("quit_game"):
-		get_tree().quit()
-	
-#	if event.is_action_pressed("feed") and !is_acting:
-#		feed()
-
-
 func _init():
 	Global.activePlayer = self
 
@@ -49,6 +41,11 @@ func charge_coroutine():
 	
 	while Input.is_action_pressed("launch"):
 		await get_tree().process_frame
+		
+		if is_acting:
+			charge_dots.frame = 0
+			return
+		
 		time -= get_process_delta_time()
 		
 		if time <= 0.0:
@@ -95,7 +92,6 @@ func _on_body_entered(other):
 	if other is Prey and other.is_panicking:
 		feed_on(other)
 
-
 var last_launched : RigidBody2D
 func launch(vel: Vector2):
 	if last_launched:
@@ -105,7 +101,8 @@ func launch(vel: Vector2):
 	last_launched.global_position = bullet_spawn_point.global_position
 	last_launched.apply_central_impulse(vel)
 	owner.add_child(last_launched)
-
+	
+	$Audio/SpitSound.play()
 
 func feed_on(target):
 	is_acting = true
@@ -129,7 +126,7 @@ func feed_on(target):
 	is_acting = false
 
 func align_with_prey(target):
-	while target.global_position.x - global_position.x > 4:
+	while abs(target.global_position.x - global_position.x) > 4:
 		velocity.x = sign(target.global_position - global_position).x * 20
 		move_and_slide()
 		await get_tree().process_frame

@@ -11,11 +11,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_panicking : bool = false
 
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var idle_sound : AudioStreamPlayer2D = $Audio/IdleSound
+@onready var fear_sound : AudioStreamPlayer2D = $Audio/FearSound
 
 func _physics_process(delta):
-	if is_panicking: return
-	
 	var fromPlayer = global_position - Global.activePlayer.global_position
 	var dist = fromPlayer.length()
 	
@@ -39,12 +38,19 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if cached_pos == global_position and direction:
-		panic()
+		anim.play("03_2_cry_loop")
+		
+		idle_sound.stop()
+		if not fear_sound.playing:
+			fear_sound.play()
+		
+		is_panicking = true
 		return
 	
 	anim.play("01_walk" if direction else "00_idle")
-
-
-func panic():
-	is_panicking = true
-	anim.play("03_2_cry_loop")
+	
+	fear_sound.stop()
+	if not idle_sound.playing:
+		idle_sound.play()
+	
+	is_panicking = false

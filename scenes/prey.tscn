@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgiufjutc02mh"]
+[gd_scene load_steps=18 format=3 uid="uid://dgiufjutc02mh"]
 
 [ext_resource type="Texture2D" uid="uid://dg766eqx18i8w" path="res://art/prey.png" id="1_07r8p"]
 [ext_resource type="Script" path="res://scenes/prey.gd" id="1_ig5ql"]
+[ext_resource type="AudioStream" uid="uid://duxovp8uytltj" path="res://audio/prey_idle.wav" id="2_xr4al"]
+[ext_resource type="AudioStream" uid="uid://cam0aqmol7nls" path="res://audio/prey_fear.wav" id="3_14rxo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh6ho"]
 size = Vector2(8, 7)
@@ -120,3 +122,11 @@ animation = &"01_walk"
 autoplay = "00_idle"
 
 [node name="FleeTimer" type="Timer" parent="."]
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="IdleSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("2_xr4al")
+
+[node name="FearSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("3_14rxo")

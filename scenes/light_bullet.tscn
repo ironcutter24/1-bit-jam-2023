@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://e5havokogof6"]
+[gd_scene load_steps=7 format=3 uid="uid://e5havokogof6"]
 
 [ext_resource type="Script" path="res://scripts/light_bullet.gd" id="1_aw0lj"]
+[ext_resource type="AudioStream" uid="uid://bp7e2l45yw85d" path="res://audio/hit_wall.wav" id="2_gr03k"]
 [ext_resource type="Texture2D" uid="uid://b3eraverbsca5" path="res://art/light_bullet.png" id="2_jgpij"]
 [ext_resource type="PackedScene" uid="uid://ca6jaoakao0ov" path="res://scenes/light_animation.tscn" id="3_o8ous"]
 
@@ -35,3 +36,9 @@ sprite_frames = SubResource("SpriteFrames_3olfu")
 autoplay = "default"
 
 [node name="LightAnimation" parent="." instance=ExtResource("3_o8ous")]
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="HitWallSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("2_gr03k")
+volume_db = -8.088

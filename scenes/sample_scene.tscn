@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbjg0y0hqcrfq"]
+[gd_scene load_steps=8 format=3 uid="uid://cbjg0y0hqcrfq"]
 
 [ext_resource type="PackedScene" uid="uid://bgv3hhmac76gs" path="res://scenes/player.tscn" id="1_o0jpf"]
 [ext_resource type="Texture2D" uid="uid://3a6a5pq80k44" path="res://art/main_tileset.png" id="1_sg5mp"]
 [ext_resource type="PackedScene" uid="uid://peyybkxh1pq8" path="res://scenes/chandelier.tscn" id="3_tm4ga"]
 [ext_resource type="PackedScene" uid="uid://dgiufjutc02mh" path="res://scenes/prey.tscn" id="5_it5ch"]
+[ext_resource type="AudioStream" uid="uid://dod5s634i1qk2" path="res://audio/music/Creepy x 1-bit.wav" id="5_sx77a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_00mem"]
 texture = ExtResource("1_sg5mp")
@@ -195,3 +196,8 @@ position = Vector2(62, 115)
 
 [node name="Prey" parent="." instance=ExtResource("5_it5ch")]
 position = Vector2(129, 116)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sx77a")
+volume_db = -2.0
+autoplay = true

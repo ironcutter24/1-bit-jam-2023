@@ -15,3 +15,4 @@ func _physics_process(_delta):
 
 func _on_body_entered(_body: Node):
 		light.visible = true
+		$Audio/HitWallSound.play()
