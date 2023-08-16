@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgiufjutc02mh"]
+[gd_scene load_steps=16 format=3 uid="uid://dgiufjutc02mh"]
 
 [ext_resource type="Texture2D" uid="uid://dg766eqx18i8w" path="res://art/prey.png" id="1_07r8p"]
+[ext_resource type="Script" path="res://scenes/prey.gd" id="1_ig5ql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh6ho"]
 size = Vector2(8, 8)
@@ -107,6 +108,7 @@ animations = [{
 
 [node name="Prey" type="CharacterBody2D"]
 collision_layer = 2
+script = ExtResource("1_ig5ql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)

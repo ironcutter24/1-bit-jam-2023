@@ -13,5 +13,5 @@ func _physics_process(_delta):
 	if linear_velocity.length() > max_velocity:
 		linear_velocity = linear_velocity.normalized() * max_velocity
 
-func _on_body_entered(body: Node):
+func _on_body_entered(_body: Node):
 		light.visible = true
