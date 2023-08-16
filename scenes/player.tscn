@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bw6m2mgoidn5p" path="res://art/charge_dots.png" id="5_u0o7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p26rr"]
-size = Vector2(8, 14)
+size = Vector2(8, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_86gpf"]
 atlas = ExtResource("1_5dugy")
@@ -188,7 +188,7 @@ bullet_spawn_point = NodePath("Body/BulletSpawnPoint")
 light_bullet = ExtResource("2_n6vic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_p26rr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

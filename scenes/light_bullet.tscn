@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://e5havokogof6"]
 
-[ext_resource type="Script" path="res://scenes/light_bullet.gd" id="1_iavgo"]
-[ext_resource type="Texture2D" uid="uid://dmba4gcr7rg0s" path="res://icon.svg" id="2_xblw8"]
+[ext_resource type="Script" path="res://scripts/light_bullet.gd" id="1_aw0lj"]
+[ext_resource type="Texture2D" uid="uid://b3eraverbsca5" path="res://art/light_bullet.png" id="2_jgpij"]
 [ext_resource type="PackedScene" uid="uid://ca6jaoakao0ov" path="res://scenes/light_animation.tscn" id="3_o8ous"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_453rv"]
-size = Vector2(2, 2)
+size = Vector2(4, 4)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3olfu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xblw8")
+"texture": ExtResource("2_jgpij")
 }],
 "loop": true,
 "name": &"default",
@@ -23,13 +23,15 @@ collision_layer = 2
 gravity_scale = 0.5
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_iavgo")
+lock_rotation = true
+script = ExtResource("1_aw0lj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_453rv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.02, 0.02)
+position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_3olfu")
+autoplay = "default"
 
 [node name="LightAnimation" parent="." instance=ExtResource("3_o8ous")]
