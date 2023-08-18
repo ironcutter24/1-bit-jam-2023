@@ -26,6 +26,7 @@ func _init():
 
 func _ready():
 	$Body/FeedingArea.body_entered.connect(_on_body_entered)
+	$HurtBox.body_entered.connect(_on_spikes_entered)
 
 
 func _process(_delta):
@@ -91,6 +92,9 @@ func _physics_process(delta):
 func _on_body_entered(other):
 	if other is Prey and other.is_panicking:
 		feed_on(other)
+
+func _on_spikes_entered(_other):
+	Global.reload_current_level()
 
 var last_launched : RigidBody2D
 func launch(vel: Vector2):
