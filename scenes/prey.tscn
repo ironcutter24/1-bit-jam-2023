@@ -295,6 +295,7 @@ sprite_frames = SubResource("SpriteFrames_cxo0a")
 
 [node name="IdleSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("2_xr4al")
+max_distance = 80.0
 
 [node name="FearSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("3_14rxo")
