@@ -16,19 +16,28 @@ var is_panicking : bool = false
 @onready var fear_sound : AudioStreamPlayer2D = $Audio/FearSound
 
 func _physics_process(delta):
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	
 	var fromPlayer = global_position - Global.activePlayer.global_position
 	var dist = fromPlayer.length()
 	
 	var direction = 0
 	if dist < FLEE_DISTANCE:
 		direction = sign(fromPlayer.x)
+		
+		if not $FearTimer.time_left:
+			animVFX.play("cry")
+			play_fear_sound()
+		
+		$FearTimer.start()
+	else:
+		if not $FearTimer.time_left:
+			animVFX.play("sing")
+			play_idle_sound()
 	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	if direction:
 		velocity.x = direction * MOVE_SPEED
 		anim.flip_h = direction < 0
@@ -40,17 +49,10 @@ func _physics_process(delta):
 	
 	if cached_pos == global_position and direction:
 		anim.play("03_2_cry_loop")
-		animVFX.play("cry")
-		
-		play_fear_sound()
-		
 		is_panicking = true
 		return
 	
 	anim.play("01_walk" if direction else "00_idle")
-	animVFX.play("cry" if direction else "sing")
-	
-	play_idle_sound()
 	
 	is_panicking = false
 
