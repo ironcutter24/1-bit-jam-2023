@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjangwikyelvs"]
+[gd_scene load_steps=7 format=3 uid="uid://bjangwikyelvs"]
 
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_uu1xm"]
 [ext_resource type="PackedScene" uid="uid://brxbf82051pvq" path="res://scenes/levels/level_00.tscn" id="2_mqej5"]
 [ext_resource type="PackedScene" uid="uid://b4u5uwr3e3hqc" path="res://scenes/levels/win_scene.tscn" id="2_p1vuo"]
+[ext_resource type="PackedScene" uid="uid://kky3jdwfq186" path="res://scenes/levels/level_01.tscn" id="3_6e2k3"]
 [ext_resource type="AudioStream" uid="uid://dod5s634i1qk2" path="res://audio/music/Creepy x 1-bit.wav" id="4_4u7lk"]
 [ext_resource type="Texture2D" uid="uid://bb66w3ic50yuh" path="res://art/background.png" id="5_yyd82"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_uu1xm")
-scene_list = Array[PackedScene]([ExtResource("2_mqej5")])
+scene_list = Array[PackedScene]([ExtResource("2_mqej5"), ExtResource("3_6e2k3")])
 win_scene = ExtResource("2_p1vuo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

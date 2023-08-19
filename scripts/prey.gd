@@ -42,9 +42,7 @@ func _physics_process(delta):
 		anim.play("03_2_cry_loop")
 		animVFX.play("cry")
 		
-		idle_sound.stop()
-		if not fear_sound.playing:
-			fear_sound.play()
+		play_fear_sound()
 		
 		is_panicking = true
 		return
@@ -52,8 +50,17 @@ func _physics_process(delta):
 	anim.play("01_walk" if direction else "00_idle")
 	animVFX.play("cry" if direction else "sing")
 	
+	play_idle_sound()
+	
+	is_panicking = false
+
+
+func play_idle_sound():
 	fear_sound.stop()
 	if not idle_sound.playing:
 		idle_sound.play()
-	
-	is_panicking = false
+
+func play_fear_sound():
+	idle_sound.stop()
+	if not fear_sound.playing:
+		fear_sound.play()

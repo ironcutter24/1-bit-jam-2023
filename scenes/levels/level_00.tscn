@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brxbf82051pvq"]
+[gd_scene load_steps=4 format=3 uid="uid://brxbf82051pvq"]
 
 [ext_resource type="PackedScene" uid="uid://5y3gdqa0ript" path="res://scenes/base_level.tscn" id="1_7ce6j"]
 [ext_resource type="PackedScene" uid="uid://dgiufjutc02mh" path="res://scenes/prey.tscn" id="2_q5he2"]
+[ext_resource type="PackedScene" uid="uid://peyybkxh1pq8" path="res://scenes/chandelier.tscn" id="3_3mmke"]
 
 [node name="Level_00" instance=ExtResource("1_7ce6j")]
 
@@ -15,10 +16,19 @@ prey_instances = [NodePath("../Actors/Prey"), NodePath("../Actors/Prey2"), NodeP
 position = Vector2(33, 72)
 
 [node name="Prey" parent="Actors" index="1"]
-position = Vector2(113, 72)
+position = Vector2(129, 72)
 
 [node name="Prey2" parent="Actors" index="2" instance=ExtResource("2_q5he2")]
 position = Vector2(262, 216)
 
 [node name="Prey3" parent="Actors" index="3" instance=ExtResource("2_q5he2")]
 position = Vector2(106, 120)
+
+[node name="Chandelier" parent="Props" index="0" instance=ExtResource("3_3mmke")]
+position = Vector2(123, 64)
+
+[node name="Chandelier2" parent="Props" index="1" instance=ExtResource("3_3mmke")]
+position = Vector2(227, 208)
+
+[node name="Chandelier3" parent="Props" index="2" instance=ExtResource("3_3mmke")]
+position = Vector2(137, 112)
