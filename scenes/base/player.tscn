@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bgv3hhmac76gs"]
+[gd_scene load_steps=31 format=3 uid="uid://bgv3hhmac76gs"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_clan6"]
 [ext_resource type="PackedScene" uid="uid://e5havokogof6" path="res://scenes/base/light_bullet.tscn" id="2_xvdr4"]
 [ext_resource type="Texture2D" uid="uid://dprcxlm1t6p0t" path="res://art/character.png" id="3_nba4v"]
 [ext_resource type="PackedScene" uid="uid://ca6jaoakao0ov" path="res://scenes/base/light_animation.tscn" id="4_1upde"]
 [ext_resource type="AudioStream" uid="uid://irey23jsluj4" path="res://audio/spit.wav" id="5_sj2oy"]
+[ext_resource type="AudioStream" uid="uid://b1buuobaie3gw" path="res://audio/player_hurt.wav" id="6_qgtw2"]
 [ext_resource type="Texture2D" uid="uid://bw6m2mgoidn5p" path="res://art/charge_dots.png" id="6_ybtbn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p26rr"]
@@ -231,6 +232,10 @@ shape = SubResource("RectangleShape2D_ppnrc")
 [node name="SpitSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_sj2oy")
 volume_db = -3.467
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("6_qgtw2")
+volume_db = -2.0
 
 [node name="ChargeDots" type="Sprite2D" parent="."]
 position = Vector2(1, -10)

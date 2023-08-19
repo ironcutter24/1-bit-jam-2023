@@ -29,9 +29,13 @@ func _ready():
 	$HurtBox.body_entered.connect(_on_spikes_entered)
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("launch") and not is_charging:
+func _unhandled_input(event):
+	if event.is_action_pressed("launch") and not is_charging:
 		charge_coroutine()
+	
+	if event.is_action_pressed("reload_scene"):
+		Global.reload_current_level()
+
 
 const level_charge_time : float = 0.5
 func charge_coroutine():
@@ -94,6 +98,8 @@ func _on_body_entered(other):
 		feed_on(other)
 
 func _on_spikes_entered(_other):
+	$Audio/HurtSound.play()
+	await get_tree().create_timer(0.2).timeout
 	Global.reload_current_level()
 
 var last_launched : RigidBody2D
