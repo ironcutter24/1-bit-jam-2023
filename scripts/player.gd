@@ -118,6 +118,7 @@ func feed_on(target):
 	is_acting = true
 	
 	anim.play("03_1_excitement")
+	$Audio/ExcitementSound.play()
 	await get_tree().create_timer(1).timeout
 	
 	await align_with_prey(target)

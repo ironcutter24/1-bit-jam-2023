@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bgv3hhmac76gs"]
+[gd_scene load_steps=32 format=3 uid="uid://bgv3hhmac76gs"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_clan6"]
 [ext_resource type="PackedScene" uid="uid://e5havokogof6" path="res://scenes/base/light_bullet.tscn" id="2_xvdr4"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://irey23jsluj4" path="res://audio/spit.wav" id="5_sj2oy"]
 [ext_resource type="AudioStream" uid="uid://b1buuobaie3gw" path="res://audio/player_hurt.wav" id="6_qgtw2"]
 [ext_resource type="Texture2D" uid="uid://bw6m2mgoidn5p" path="res://art/charge_dots.png" id="6_ybtbn"]
+[ext_resource type="AudioStream" uid="uid://cm3vv0ifxc1bk" path="res://audio/player_excitement.wav" id="7_wmjn2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p26rr"]
 size = Vector2(8, 13)
@@ -235,6 +236,10 @@ volume_db = -3.467
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("6_qgtw2")
+volume_db = -2.0
+
+[node name="ExcitementSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("7_wmjn2")
 volume_db = -2.0
 
 [node name="ChargeDots" type="Sprite2D" parent="."]
