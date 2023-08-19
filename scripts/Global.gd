@@ -1,7 +1,8 @@
 extends Node
 
 
-@export var levels : Array[PackedScene]
+@export var scene_list : Array[PackedScene]
+@export var win_scene : PackedScene
 
 var current_level : int = 0
 var activePlayer : Player
@@ -14,7 +15,18 @@ func _unhandled_input(event):
 
 func load_next_level() -> void:
 	current_level += 1
-	get_tree().change_scene_to_packed(levels[current_level])
+	
+	if current_level == scene_list.size():
+		get_tree().change_scene_to_packed(win_scene)
+		return
+	elif current_level > scene_list.size():
+		return
+	
+	get_tree().change_scene_to_packed(scene_list[current_level])
 
 func reload_current_level() -> void:
 	get_tree().reload_current_scene()
+
+func reset_game():
+	current_level = 0
+	get_tree().change_scene_to_packed(scene_list[current_level])

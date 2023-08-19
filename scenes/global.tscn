@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjangwikyelvs"]
+[gd_scene load_steps=6 format=3 uid="uid://bjangwikyelvs"]
 
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_uu1xm"]
+[ext_resource type="PackedScene" uid="uid://brxbf82051pvq" path="res://scenes/levels/level_00.tscn" id="2_mqej5"]
+[ext_resource type="PackedScene" uid="uid://b4u5uwr3e3hqc" path="res://scenes/levels/win_scene.tscn" id="2_p1vuo"]
+[ext_resource type="AudioStream" uid="uid://dod5s634i1qk2" path="res://audio/music/Creepy x 1-bit.wav" id="4_4u7lk"]
+[ext_resource type="Texture2D" uid="uid://bb66w3ic50yuh" path="res://art/background.png" id="5_yyd82"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_uu1xm")
+scene_list = Array[PackedScene]([ExtResource("2_mqej5")])
+win_scene = ExtResource("2_p1vuo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_yyd82")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4u7lk")
+volume_db = -2.0
+autoplay = true

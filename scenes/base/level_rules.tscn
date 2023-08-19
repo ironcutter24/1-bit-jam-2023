@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xgp2kbdxu33c"]
+
+[ext_resource type="Script" path="res://scripts/LevelRules.gd" id="1_ep4pt"]
+
+[node name="LevelRules" type="Node"]
+script = ExtResource("1_ep4pt")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=40 format=3 uid="uid://dgiufjutc02mh"]
 
 [ext_resource type="Texture2D" uid="uid://dg766eqx18i8w" path="res://art/prey.png" id="1_07r8p"]
-[ext_resource type="Script" path="res://scenes/prey.gd" id="1_ig5ql"]
+[ext_resource type="Script" path="res://scripts/prey.gd" id="1_8rpjt"]
 [ext_resource type="AudioStream" uid="uid://duxovp8uytltj" path="res://audio/prey_idle.wav" id="2_xr4al"]
 [ext_resource type="AudioStream" uid="uid://cam0aqmol7nls" path="res://audio/prey_fear.wav" id="3_14rxo"]
 
@@ -275,7 +275,7 @@ animations = [{
 
 [node name="Prey" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_ig5ql")
+script = ExtResource("1_8rpjt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)
